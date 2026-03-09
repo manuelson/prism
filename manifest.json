@@ -3,14 +3,8 @@
   "name": "PRism",
   "version": "1.0.0",
   "description": "View your open GitHub Pull Requests and review requests",
-  "permissions": [
-    "identity",
-    "storage"
-  ],
-  "host_permissions": [
-    "https://api.github.com/*",
-    "https://github.com/*"
-  ],
+  "permissions": ["identity", "storage"],
+  "host_permissions": ["https://api.github.com/*", "https://github.com/*"],
   "action": {
     "default_popup": "popup/popup.html",
     "default_icon": {

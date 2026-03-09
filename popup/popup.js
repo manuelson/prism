@@ -100,7 +100,7 @@ async function handleLogout() {
   await chrome.storage.local.remove(['accessToken', 'user', 'selectedRepo']);
   accessToken = null;
   currentUser = null;
-  repoSelect.innerHTML = '<option value="">Select repository...</option>';
+  repoSelect.innerHTML = '';
   prList.innerHTML = '';
   showScreen('login');
 }
@@ -142,7 +142,7 @@ async function fetchAPI(endpoint, options = {}) {
 async function loadRepos() {
   try {
     showLoading();
-    repoSelect.innerHTML = '<option value="">Select repository...</option><option value="__all__">All Repositories</option>';
+    repoSelect.innerHTML = '<option value="__all__">All Repositories</option>';
 
     let allRepos = [];
     let page = 1;
@@ -194,11 +194,6 @@ async function handleRepoChange() {
   const fullRepo = repoSelect.value;
   prList.innerHTML = '';
   emptyState.classList.add('hidden');
-
-  if (!fullRepo) {
-    await chrome.storage.local.remove(['selectedRepo']);
-    return;
-  }
 
   await chrome.storage.local.set({ selectedRepo: fullRepo });
   await loadPRs();
